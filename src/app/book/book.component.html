@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Book List</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th> Date </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.question }}</td>
+        <td>{{ book.answer }}</td>
+        <td>{{ book.timestamp }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
