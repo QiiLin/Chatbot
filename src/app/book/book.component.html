@@ -1,11 +1,12 @@
 <div class="container">
-  <h1>Book List</h1>
-  <table class="table">
+  <h1 style="text-align: center">QnA List</h1>
+  <button id="btnExport" onclick="javascript:xport.toCSV('QnAlist');">Download</button>
+  <table class="table" id="QnAlist">
     <thead>
       <tr>
         <th>Question</th>
         <th>Answer</th>
-        <th> Date </th>
+        <th>Date</th>
       </tr>
     </thead>
     <tbody>
