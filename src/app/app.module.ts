@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
 import { RouterModule, Routes } from '@angular/router';
 
+import {AccordionModule} from 'primeng/accordion';
+import {MenuItem} from 'primeng/api'; 
 
 const appRoutes: Routes = [
   {
