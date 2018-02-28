@@ -1,7 +1,18 @@
 <div class="container">
-  <h1 style="text-align: center">QnA List</h1>
-  <button id="btnExport" onclick="javascript:xport.toCSV('QnAlist');">Download</button>
-  <table class="table" id="QnAlist">
+<!-- 
+  <table border="0" cellspacing="5" cellpadding="5">
+      <tbody>
+          <tr>
+              <td>Start Date:</td>
+              <td><input name="min" id="min" type="text"></td>
+          </tr>
+          <tr>
+              <td>End Date:</td>
+              <td><input name="max" id="max" type="text"></td>
+          </tr>
+      </tbody>
+  </table> -->
+  <!-- <table class="display" id="QnAlist">
     <thead>
       <tr>
         <th>Question</th>
@@ -17,4 +28,27 @@
       </tr>
     </tbody>
   </table>
+</div> -->
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+</div>
+
+
+<p-dataTable [value]="books" [rows]="10" [paginator]="true" [globalFilter]="gb" exportFilename="books" [(selection)]="selectedBooks" selectionMode="multiple" [metaKeySelection]="false" #dt>
+    <p-header>QnA List
+        <div class="ui-helper-clearfix">
+            <button type="button" pButton icon="fa-file-o" iconPos="left" label="All Data" (click)="dt.exportCSV()" style="float:left"></button>
+            <button type="button" pButton icon="fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+        </div>
+    </p-header>      
+    <p-column field="question" header="Question" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
+    <p-column field="answer" header="Answer" [filter]="true" filterPlaceholder="Search"  filterMatchMode="contains" ></p-column>
+    <p-column field="timestamp" header="Date" [filter]="true" filterMatchMode="contains">
+      <ng-template pTemplate="filter" let-col>
+        <p-calendar [(ngModel)]="rangeDates" selectionMode="range" readonlyInput="true"></p-calendar>
+      </ng-template>
+    </p-column>
+</p-dataTable>
+
 </div>

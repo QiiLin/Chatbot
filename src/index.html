@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>QnAlist</title>
   <base href="/">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <!-- Latest compiled and minified CSS -->
+<!-- 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+
 </head>
 <body>
   <app-root></app-root>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+  
   <script>
     var xport = {
       _fallbacktoCSV: true,  
@@ -117,6 +126,41 @@
           .join("\r\n");
       }
     };
-</script>
+
+// $(document).ready(function(){
+//   $.fn.dataTable.ext.search.push(
+//   function (settings, data, dataIndex) {
+//       var min = $('#min').datepicker("getDate");
+//       var max = $('#max').datepicker("getDate");
+//       var startDate = new Date(data[2]);
+//       if (min == null && max == null) { return true; }
+//       if (min == null && startDate <= max) { return true;}
+//       if(max == null && startDate >= min) {return true;}
+//       if (startDate <= max && startDate >= min) { return true; }
+//       return false;
+//   }
+//   );
+//       $("#min").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+//       $("#max").datepicker({ onSelect: function () { table.draw(); }, changeMonth: true, changeYear: true });
+//       var table = $('#QnAlist').DataTable();
+
+//       // Event listener to the two range filtering inputs to redraw on input
+//       $('#min, #max').change(function () {
+//           table.draw();
+//       });
+
+
+      
+//       $('#column3_search').on( 'keyup', function () {
+//         table
+//         .columns( 3 )
+//         .search( this.value )
+//         .draw();
+// } );
+  
+  
+  
+//     });
+  </script>
 </body>
 </html>
