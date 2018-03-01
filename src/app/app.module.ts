@@ -15,10 +15,13 @@ import { PanelModule } from 'primeng/components/panel/panel';
 import { ButtonModule } from 'primeng/components/button/button';
 import { RadioButtonModule } from 'primeng/components/radioButton/radioButton';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DataTableModule} from 'primeng/datatable';
-import {CalendarModule} from 'primeng/calendar';
+import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+
 const appRoutes: Routes = [
   {
     path: 'books',
@@ -47,6 +50,8 @@ const appRoutes: Routes = [
     ButtonModule,
     RadioButtonModule,
     DataTableModule,
+    MultiSelectModule,
+    DropdownModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
