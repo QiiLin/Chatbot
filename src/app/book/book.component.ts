@@ -1,5 +1,4 @@
 
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http'
@@ -11,6 +10,7 @@ import { ResponseType } from '@angular/http/src/enums';
 import { MultiSelectModule } from 'primeng/multiselect';
 import {DataTable} from 'primeng/datatable';
 import { Calendar } from 'primeng/calendar';
+import { Data } from '@angular/router/src/config';
 
 
 @Component({
@@ -21,7 +21,8 @@ import { Calendar } from 'primeng/calendar';
 
 
 export class BookComponent implements OnInit {
-  rangeDates: Date;
+  minDate: Date;
+  maxDate: Date;
   books: any;
   selectedBooks: any;
   ifRight: SelectItem[];
@@ -42,29 +43,37 @@ export class BookComponent implements OnInit {
     this.ifRight = [];
     this.ifRight.push({label: 'Unable to Answer', value: 'I’m sorry. I don’t understand your question. Could you please rephrase?'});
     this.dt.filterConstraints["Rangefilter"] = function Rangefilter(value, filter) {
+      if ((filter[0] === undefined || filter[0] === null) && (filter[1] === undefined || filter[1] === null)) {
+        return true;
+      }
+      var minDate = null;
+      var maxDate = null;
       var currDate = new Date(value).getTime();
-      var minDate = new Date(filter[0]).getTime();
-
-      if (filter[1]!= null) {
-          var maxDate = new Date(filter[1]).getTime();
+      if (filter[0] != null) {
+        minDate = new Date(filter[0]).getTime();
       }
-      
-      if (filter === undefined || filter === null){
-          return true;
+      if (filter[1] != null) {
+        maxDate = new Date(filter[1]).getTime();
       }
 
-      if (filter[1]!== null) {
-          if (currDate < (maxDate+86400000) && currDate >= minDate ) {
+      if (maxDate != null && minDate != null) {
+          if (currDate < (maxDate) && currDate >= minDate ) {
               return true;
           } else {
               return false;
           }
-      } else {
+      } else if (minDate != null) {
           if (currDate >= minDate) {
               return true;
           } else {
               return false;
           }
+      } else {
+        if (currDate <= maxDate) {
+          return true;
+      } else {
+          return false;
+      }
       }               
 
   }
@@ -73,7 +82,8 @@ export class BookComponent implements OnInit {
   public end(value, dt, col) {
     // value = array of data from the current row
     // filter = value from the filter that will be searched in the value-array
-    dt.filter(this.rangeDates ,col.field, col.filterMatchMode);
+    var rangeDates: Date[] = [this.minDate, this.maxDate];;
+    dt.filter(rangeDates ,col.field, col.filterMatchMode);
 
 }
 
