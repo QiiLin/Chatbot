@@ -1,56 +1,58 @@
 <div class="container">
-<!-- 
-  <table border="0" cellspacing="5" cellpadding="5">
+  <!-- 
+    <table border="0" cellspacing="5" cellpadding="5">
+        <tbody>
+            <tr>
+                <td>Start Date:</td>
+                <td><input name="min" id="min" type="text"></td>
+            </tr>
+            <tr>
+                <td>End Date:</td>
+                <td><input name="max" id="max" type="text"></td>
+            </tr>
+        </tbody>
+    </table> -->
+    <!-- <table class="display" id="QnAlist">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Date</th>
+        </tr>
+      </thead>
       <tbody>
-          <tr>
-              <td>Start Date:</td>
-              <td><input name="min" id="min" type="text"></td>
-          </tr>
-          <tr>
-              <td>End Date:</td>
-              <td><input name="max" id="max" type="text"></td>
-          </tr>
+        <tr *ngFor="let book of books">
+          <td>{{ book.question }}</td>
+          <td>{{ book.answer }}</td>
+          <td>{{ book.timestamp }}</td>
+        </tr>
       </tbody>
-  </table> -->
-  <!-- <table class="display" id="QnAlist">
-    <thead>
-      <tr>
-        <th>Question</th>
-        <th>Answer</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let book of books">
-        <td>{{ book.question }}</td>
-        <td>{{ book.answer }}</td>
-        <td>{{ book.timestamp }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
-    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
-</div>
-
-
-<p-dataTable [value]="books" [rows]="20" [paginator]="true" [globalFilter]="gb" exportFilename="books" [(selection)]="selectedBooks" selectionMode="multiple" [metaKeySelection]="false" #dt>
-    <p-header>QnA List
-        <div class="ui-helper-clearfix">
-            <button type="button" pButton icon="fa-file-o" iconPos="left" label="All Data" (click)="dt.exportCSV()" style="float:left"></button>
-            <button type="button" pButton icon="fa-file" iconPos="left" label="Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
-        </div>
-    </p-header>      
-    <p-column field="question" header="Question" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
-    
-    <p-column field="answer" header="Answer&nbsp;&nbsp;&nbsp;&nbsp;" [filter]="true" filterMatchMode="in" >
-      <ng-template pTemplate="filter" let-col>
-        <p-multiSelect [options]="ifRight" defaultLabel="All" styleClass="ui-column-filter" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></p-multiSelect>
-      </ng-template>
-    </p-column>
-   
-    <p-column field="timestamp" header="Date" [filter]="true" filterMatchMode="in" [sortable]="true"></p-column>
-</p-dataTable>
-
-</div>
+    </table>
+  </div> -->
+  <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+  </div>
+  
+  
+  <p-dataTable [value]="books" [rows]="20" [paginator]="true" [globalFilter]="gb" exportFilename="books" [(selection)]="selectedBooks" selectionMode="multiple" [metaKeySelection]="false" #dt>
+      <p-header>QnA List
+          <div class="ui-helper-clearfix">
+              <button type="button" pButton icon="fa-file-o" iconPos="left" label="Download All Data" (click)="dt.exportCSV()" style="float:left"></button>
+              <button type="button" pButton icon="fa-file" iconPos="left" label="Download Selection Only" (click)="dt.exportCSV({selectionOnly:true})" style="float:right"></button>
+          </div>
+      </p-header>      
+      <p-column field="question" header="Question" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
+      
+      <p-column field="answer" header="Answer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" [filter]="true" filterMatchMode="in" >
+        <ng-template pTemplate="filter" let-col>
+          <p-multiSelect [options]="ifRight" defaultLabel="All" styleClass="ui-column-filter" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"></p-multiSelect>
+        </ng-template>
+      </p-column>
+      <p-column field="timestamp" header="Date" [filter]="true" filterMatchMode="Rangefilter" [sortable]="true">
+        <ng-template pTemplate="filter" let-col>
+          <p-calendar [(ngModel)]="rangeDates" selectionMode="range" styleClass="ui-column-filter" (onSelect)= "end($event.value, dt, col)" (onClose)= "end($event.value, dt, col)" ></p-calendar>
+        </ng-template>
+      </p-column>
+  </p-dataTable>
+  </div>
