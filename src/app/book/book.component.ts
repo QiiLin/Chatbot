@@ -1,4 +1,5 @@
 
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http'
@@ -43,8 +44,6 @@ export class BookComponent implements OnInit {
     this.dt.filterConstraints["Rangefilter"] = function Rangefilter(value, filter) {
       var currDate = new Date(value).getTime();
       var minDate = new Date(filter[0]).getTime();
-      var currDay = new Date(value).getDate();
-      var minDay = new Date(filter[0]).getDate();
 
       if (filter[1]!= null) {
           var maxDate = new Date(filter[1]).getTime();
@@ -61,7 +60,7 @@ export class BookComponent implements OnInit {
               return false;
           }
       } else {
-          if (currDay===minDay) {
+          if (currDate >= minDate) {
               return true;
           } else {
               return false;
