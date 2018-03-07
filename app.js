@@ -9,12 +9,12 @@ var book = require('./routes/book');
 var app = express();
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('put ur own mongodb')
-   .then(() =>  console.log('connection succesful'))
-   .catch((err) => console.error(err));
-// mongoose.connect('mongodb://localhost/mean-angular5')
-//   .then(() =>  console.log('connection succesful'))
-//   .catch((err) => console.error(err));
+//mongoose.connect('put ur own mongodb')
+  // .then(() =>  console.log('connection succesful'))
+   //.catch((err) => console.error(err));
+mongoose.connect('mongodb://gobotlog:iQydElBfHchbTPoX6sPFHLlSXRoJNld5pKmznbLpKfrjAIkvgqBU9H9s60FNeKvlTWaWBtU8wcgIn3nLXJ6x8w==@gobotlog.documents.azure.com:10255/gobotlog?ssl=true&replicaSet=globaldb')
+  .then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
 
 
 app.use(logger('dev'));
