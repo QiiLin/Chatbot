@@ -11,7 +11,10 @@ mongoose.Promise = require('bluebird');
 //mongoose.connect('put ur own mongodb')
   // .then(() =>  console.log('connection succesful'))
    //.catch((err) => console.error(err));
-mongoose.connect('mongodb://gobotlog:iQydElBfHchbTPoX6sPFHLlSXRoJNld5pKmznbLpKfrjAIkvgqBU9H9s60FNeKvlTWaWBtU8wcgIn3nLXJ6x8w%3D%3D@gobotlog.documents.azure.com:10255/gobotlog?ssl=true&replicaSet=globaldb')
+
+// the data base will look like this for each entry 
+// question, answer , timestamp and they are all string type.
+mongoose.connect('put ur database connection string')
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
