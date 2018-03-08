@@ -4,12 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng build --prod && node ./bin/www",
-    "build": "ng build --prod",
+    "start": "ng build && node ./bin/www",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "npm run build"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
